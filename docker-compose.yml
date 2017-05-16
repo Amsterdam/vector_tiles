@@ -1,0 +1,25 @@
+version: '3'
+services:
+  database:
+    image: build.datapunt.amsterdam.nl:5000/atlas/postgres
+    environment:
+      POSTGRES_PASSWORD: insecure
+      POSTGRES_USER: basiskaart
+
+  tippecanoe:
+    build: .
+    user: root
+    environment:
+      BASISKAART_DB_NAME: basiskaart
+      BASISKAART_DB_USER: postgres
+      BASISKAART_DB_PASSWORD: insecure
+
+  python:
+    build: src
+    links:
+      - tippecanoe
+      - database
+    command: >
+      python ...
+    volumes:
+      - "/mnt/geojson:/mnt/geojson"
