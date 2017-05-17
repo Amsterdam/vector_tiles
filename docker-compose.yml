@@ -28,5 +28,5 @@ services:
     command: >
       python manage.py run_import
     volumes:
-#      - ./vector_tiles:/app/vector_tiles
+      - "/mnt/vector_tiles:/app/vector_tiles"
       - "/tmp/geojson:/mnt/geojson"
