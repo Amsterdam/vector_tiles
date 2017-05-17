@@ -33,7 +33,7 @@ node {
 
     stage("Build acceptance image tippecanoe") {
         tryStep "build", {
-            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "tippecanoe")
+            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "containers/tippecanoe")
             image.push()
             image.push("acceptance")
         }
@@ -41,7 +41,7 @@ node {
 
     stage("Build acceptance image importer") {
         tryStep "build", {
-            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}", "importer")
+            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}", "containers/importer")
             image.push()
             image.push("acceptance")
         }
