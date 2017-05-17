@@ -25,15 +25,23 @@ node {
 
     stage('Test') {
         tryStep "test", {
-            sh "docker-compose -p tileupload -f src/.jenkins/test/docker-compose.yml build"
+            sh "docker-compose -p vector_tiles -f docker-compose.yml build"
         }, {
-            sh "docker-compose -p tileupload -f src/.jenkins/test/docker-compose.yml down"
+            sh "docker-compose -p vector_tiles -f docker-compose.yml down"
         }
     }
 
-    stage("Build acceptance image") {
+    stage("Build acceptance image tippecanoe") {
         tryStep "build", {
-            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles:${env.BUILD_NUMBER}", "src")
+            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "tippecanoe")
+            image.push()
+            image.push("acceptance")
+        }
+    }
+
+    stage("Build acceptance image importer") {
+        tryStep "build", {
+            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}", "importer")
             image.push()
             image.push("acceptance")
         }
@@ -46,9 +54,18 @@ stage('Waiting for approval') {
 }
 
 node {
-    stage('Push production image') {
+    stage('Push production image tippecanoe') {
     tryStep "image tagging", {
-        def image = docker.image("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles:${env.BUILD_NUMBER}")
+        def image = docker.image("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}")
+        image.pull()
+
+            image.push("production")
+            image.push("latest")
+        }
+    }
+    stage('Push production image importer') {
+    tryStep "image tagging", {
+        def image = docker.image("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}")
         image.pull()
 
             image.push("production")
