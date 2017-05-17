@@ -1,0 +1,36 @@
+docker run \
+	--rm -v `pwd`/data_tiles:/data_tiles niene/tippecanoe \
+	--force \
+	--no-tile-size-limit \
+	--no-feature-limit \
+	--no-line-simplification \
+	--no-polygon-splitting  \
+	--no-tiny-polygon-reduction \
+	--preserve-input-order \
+	--output-to-directory=/data_tiles/bgt_tiles_zip2 \
+	-z21 -Z17 \
+	--named-layer=waterdeel_vlak0:/data_tiles/bgt/waterdeel_vlak0.geojson \
+	--named-layer=terreindeel_vlak0:/data_tiles/bgt/terreindeel_vlak0.geojson \
+	--named-layer=BGT_ODL_overbruggingsdeel:/data_tiles/bgt/BGT_ODL_overbruggingsdeel.geojson \
+	--named-layer=wegdeel_vlak0:/data_tiles/bgt/wegdeel_vlak0.geojson \
+	--named-layer=inrichtingselement_vlak0:/data_tiles/bgt/inrichtingselement_vlak0.geojson\
+	--named-layer=spoor_lijn0:/data_tiles/bgt/spoor_lijn0.geojson\
+	--named-layer=gebouw_vlak0:/data_tiles/bgt/gebouw_vlak0.geojson \
+	--named-layer=wegdeel_vlak_1:/data_tiles/bgt/wegdeel_vlak_1.geojson \
+	--named-layer=terreindeel_vlak1:/data_tiles/bgt/terreindeel_vlak1.geojson \
+	--named-layer=wegdeel_vlak1:/data_tiles/bgt/wegdeel_vlak1.geojson \
+	--named-layer=inrichtingselement_vlak1:/data_tiles/bgt/inrichtingselement_vlak1.geojson \
+	--named-layer=gebouw_vlak1:/data_tiles/bgt/gebouw_vlak1.geojson \
+	--named-layer=terreindeel_vlak2:/data_tiles/bgt/terreindeel_vlak2.geojson \
+	--named-layer=wegdeel_vlak2:/data_tiles/bgt/wegdeel_vlak2.geojson \
+	--named-layer=inrichtingselement_vlak2:/data_tiles/bgt/inrichtingselement_vlak2.geojson \
+	--named-layer=gebouw_vlak2:/data_tiles/bgt/gebouw_vlak2.geojson \
+	--named-layer=terreindeel_vlak3:/data_tiles/bgt/terreindeel_vlak3.geojson \
+	--named-layer=wegdeel_vlak3:/data_tiles/bgt/wegdeel_vlak3.geojson \
+	--named-layer=gebouw_vlak3:/data_tiles/bgt/gebouw_vlak3.geojson \
+	--named-layer=terreindeel_vlak4:/data_tiles/bgt/terreindeel_vlak4.geojson \
+	--named-layer=gebouw_vlak4:/data_tiles/bgt/gebouw_vlak4.geojson \
+	--named-layer=spoor_lijn_2:/data_tiles/bgt/spoor_lijn_2.geojson \
+	--named-layer=spoor_lijn_1:/data_tiles/bgt/spoor_lijn_1.geojson 
+
+

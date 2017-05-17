@@ -11,18 +11,22 @@ dc() {
 
 trap 'dc kill ; dc rm -f' EXIT
 
-rm -rf ${DIR}/backups
-mkdir -p ${DIR}/backups
-
-
+# start database
 dc up -d --build database
 sleep 10
 
-# import basiskaart db
+# create dirs
+mkdir -p /tmp/bgt
+mkdir -p /tmp/kbk10
+mkdir -p /tmp/kbk50
 
+# import basiskaart db
 dc exec database update-db.sh basiskaart
 
+# generate geojson
 dc run --rm importer
+
+#generate tiles
 dc run --rm tippecanoe \
 	--force \
 	--no-tile-size-limit \

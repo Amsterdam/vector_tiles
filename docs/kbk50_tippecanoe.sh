@@ -1,0 +1,35 @@
+docker run --rm -v `pwd`/data_tiles:/data_tiles niene/tippecanoe \
+	--force \
+	--no-tile-size-limit \
+	--no-feature-limit \
+	--no-line-simplification \
+	--no-polygon-splitting  \
+	--no-tiny-polygon-reduction \
+	--preserve-input-order \
+	--output-to-directory=/data_tiles/kbk50_tiles_zip2 \
+	-z13 -Z8 \
+	--named-layer=water:/data_tiles/kbk50/WDL_wateroppervlak.geojson \
+	--named-layer=terein_agrarisch:/data_tiles/kbk50/TRN_agrarisch.geojson \
+	--named-layer=terein_overig:/data_tiles/kbk50/TRN_overig.geojson \
+	--named-layer=terein_zand:/data_tiles/kbk50/TRN_zand.geojson \
+	--named-layer=gebouwen:/data_tiles/kbk50/GBW_bebouwing.geojson \
+	--named-layer=terein_bedrijfsterrein_dienstverlening:/data_tiles/kbk50/TRN_bedrijfsterrein_dienstverlening.geojson \
+	--named-layer=gebouwen_kassen:/data_tiles/kbk50/GBW_kassen.geojson \
+	--named-layer=terein_bos_groen_sport:/data_tiles/kbk50/TRN_bos_groen_sport.geojson \
+	--named-layer=water_breed:/data_tiles/kbk50/WDL_brede_waterloop.geojson \
+	--named-layer=water_smal:/data_tiles/kbk50/WDL_smalle_waterloop.geojson \
+	--named-layer=weg_straat_in_tunnel:/data_tiles/kbk50/WGL_straat_in_tunnel.geojson \
+	--named-layer=weg_hoofdweg_in_tunnel:/data_tiles/kbk50/WGL_hoofdweg_in_tunnel.geojson \
+	--named-layer=weg_regionale_weg_in_tunnel:/data_tiles/kbk50/WGL_regionale_weg_in_tunnel.geojson \
+	--named-layer=weg_autosnelweg_in_tunnel:/data_tiles/kbk50/WGL_autosnelweg_in_tunnel.geojson \
+	--named-layer=weg_straat:/data_tiles/kbk50/WGL_straat.geojson \
+	--named-layer=weg_hoofdweg:/data_tiles/kbk50/WGL_hoofdweg.geojson \
+	--named-layer=weg_regionale_weg:/data_tiles/kbk50/WGL_regionale_weg.geojson \
+	--named-layer=SBL_metro_sneltram_in_tunnel:/data_tiles/kbk50/SBL_metro_sneltram_in_tunnel.geojson \
+	--named-layer=SBL_trein_in_tunnel:/data_tiles/kbk50/SBL_trein_in_tunnel.geojson \
+	--named-layer=SBL_metro_sneltram:/data_tiles/kbk50/SBL_metro_sneltram.geojson \
+	--named-layer=SBL_trein_ongeelektrificeerd:/data_tiles/kbk50/SBL_trein_ongeelektrificeerd.geojson \
+	--named-layer=SBL_trein:/data_tiles/kbk50/SBL_trein.geojson \
+	--named-layer=weg_autosnelweg:/data_tiles/kbk50/WGL_autosnelweg.geojson 
+
+ 

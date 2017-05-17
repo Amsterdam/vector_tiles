@@ -9,13 +9,17 @@ log = logging.getLogger(__name__)
 
 
 def create_new_session():
-    log.info("DB URL:", ENGINE_URL)
+    log.debug("DB URL:", ENGINE_URL)
     engine = create_engine(ENGINE_URL)
     return sessionmaker(bind=engine)()
 
 
 def tables_from_schema(schema):
     return create_new_session().execute('SELECT table_name FROM information_schema.tables WHERE table_schema = \'{}\''.format(schema))
+
+
+def materialized_views_from_schema(schema):
+    return create_new_session().execute('set search_path=\'{}\';SELECT oid::regclass::text FROM pg_class WHERE relkind = \'m\';'.format(schema))
 
 
 def ogr2ogr(schema, table):
@@ -46,18 +50,17 @@ def ogr2ogr(schema, table):
         source=source,
         target=target,
     )
-    log.info(call,)
+    log.debug(call,)
     subprocess.call(call, shell=True)
 
 
 def run_import():
-    import_schema('bgt')
-    import_schema('kbk10')
-    import_schema('kbk50')
+    import_schema('bgt', materialized_views_from_schema('bgt'))
+    import_schema('kbk10', tables_from_schema('kbk10'))
+    import_schema('kbk50', tables_from_schema('kbk50'))
 
 
-def import_schema(schema):
-    tables = tables_from_schema(schema)
+def import_schema(schema, tables):
     for table in tables:
-        log.info('Processing schema {}, table {}', schema, table[0])
-        log.info(ogr2ogr(schema,table[0]))
+        log.debug('Processing schema {}, table {}', schema, table[0])
+        log.debug(ogr2ogr(schema,table[0]))
