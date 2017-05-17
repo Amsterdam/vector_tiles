@@ -41,7 +41,7 @@ node {
 
     stage("Build acceptance image importer") {
         tryStep "build", {
-            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}", "containers/importer")
+            def image = docker.build("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}")
             image.push()
             image.push("acceptance")
         }

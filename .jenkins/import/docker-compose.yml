@@ -2,16 +2,12 @@ version: '3'
 services:
   database:
     image: build.datapunt.amsterdam.nl:5000/atlas/postgres
-    ports:
-      - "5423:5432"
     environment:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: basiskaart
 
   tippecanoe:
-    build:
-      context: .
-      dockerfile: ./containers/tippecanoe/Dockerfile
+    image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe
     user: root
     environment:
       BASISKAART_DB_NAME: basiskaart
@@ -21,7 +17,7 @@ services:
       - "/tmp/geojson:/data_tiles"
 
   importer:
-    build: .
+    image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer
     links:
       - tippecanoe
       - database
