@@ -14,7 +14,7 @@ services:
       BASISKAART_DB_USER: postgres
       BASISKAART_DB_PASSWORD: insecure
     volumes:
-      - "/tmp/geojson:/data_tiles"
+      - "/mnt/geojson:/data_tiles"
 
   importer:
     image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer
@@ -24,5 +24,4 @@ services:
     command: >
       python manage.py run_import
     volumes:
-#      - ./vector_tiles:/app/vector_tiles
-      - "/tmp/geojson:/mnt/geojson"
+      - "/mnt/geojson:/mnt/geojson"

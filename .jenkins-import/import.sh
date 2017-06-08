@@ -16,9 +16,9 @@ dc up -d --build database
 sleep 10
 
 # create dirs
-mkdir -p /tmp/bgt
-mkdir -p /tmp/kbk10
-mkdir -p /tmp/kbk50
+mkdir -p /mnt/geojson/bgt
+mkdir -p /mnt/geojson/kbk10
+mkdir -p /mnt/geojson/kbk50
 
 # import basiskaart db
 dc exec database update-db.sh basiskaart
