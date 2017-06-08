@@ -72,7 +72,7 @@ dc run --rm tippecanoe \
 	--preserve-input-order \
 	--output-to-directory=/data_tiles/kbk10_tiles_zip2 \
 	-z16 -Z14 \
-    --named-layer=water:/data_tiles/kbk10/WDL_breed_water.geojson \
+	--named-layer=water:/data_tiles/kbk10/WDL_breed_water.geojson \
 	--named-layer=haven:/data_tiles/kbk10/WDL_haven.geojson \
 	--named-layer=terein_aanlegsteiger:/data_tiles/kbk10/TRN_aanlegsteiger.geojson \
 	--named-layer=terein_basaltblokken_steenglooiing:/data_tiles/kbk10/TRN_basaltblokken_steenglooiing.geojson \
@@ -116,6 +116,7 @@ dc run --rm tippecanoe \
 	--named-layer=SBL_trein_nietoverdekt_nsp:/data_tiles/kbk10/SBL_trein_nietoverdekt_nsp.geojson \
 	--named-layer=weg_hartlijn:/data_tiles/kbk10/WGL_hartlijn.geojson
 
+# generate tiles - kbk50
 dc run --rm tippecanoe \
 	--force \
 	--no-tile-size-limit \
@@ -149,4 +150,3 @@ dc run --rm tippecanoe \
 	--named-layer=SBL_trein_ongeelektrificeerd:/data_tiles/kbk50/SBL_trein_ongeelektrificeerd.geojson \
 	--named-layer=SBL_trein:/data_tiles/kbk50/SBL_trein.geojson \
 	--named-layer=weg_autosnelweg:/data_tiles/kbk50/WGL_autosnelweg.geojson
-

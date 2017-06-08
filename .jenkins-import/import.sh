@@ -26,7 +26,7 @@ dc exec database update-db.sh basiskaart
 # generate geojson
 dc run --rm importer
 
-#generate tiles
+# generate tiles - bgt
 dc run --rm tippecanoe \
 	--force \
 	--no-tile-size-limit \
@@ -37,30 +37,31 @@ dc run --rm tippecanoe \
 	--preserve-input-order \
 	--output-to-directory=/data_tiles/bgt_tiles_zip2 \
 	-z21 -Z17 \
-	--named-layer=waterdeel_vlak0:/data_tiles/bgt/waterdeel_vlak0.geojson \
-	--named-layer=terreindeel_vlak0:/data_tiles/bgt/terreindeel_vlak0.geojson \
-	--named-layer=BGT_ODL_overbruggingsdeel:/data_tiles/bgt/BGT_ODL_overbruggingsdeel.geojson \
+	--named-layer=water:/data_tiles/bgt/waterdeel_vlak0.geojson \
+	--named-layer=terrein0:/data_tiles/bgt/terreindeel_vlak0.geojson \
+	--named-layer=overbruggingsdeel:/data_tiles/bgt/BGT_ODL_overbruggingsdeel.geojson \
 	--named-layer=wegdeel_vlak0:/data_tiles/bgt/wegdeel_vlak0.geojson \
 	--named-layer=inrichtingselement_vlak0:/data_tiles/bgt/inrichtingselement_vlak0.geojson\
 	--named-layer=spoor_lijn0:/data_tiles/bgt/spoor_lijn0.geojson\
-	--named-layer=gebouw_vlak0:/data_tiles/bgt/gebouw_vlak0.geojson \
+	--named-layer=gebouwen0:/data_tiles/bgt/gebouw_vlak0.geojson \
 	--named-layer=wegdeel_vlak_1:/data_tiles/bgt/wegdeel_vlak_1.geojson \
-	--named-layer=terreindeel_vlak1:/data_tiles/bgt/terreindeel_vlak1.geojson \
+	--named-layer=terrein1:/data_tiles/bgt/terreindeel_vlak1.geojson \
 	--named-layer=wegdeel_vlak1:/data_tiles/bgt/wegdeel_vlak1.geojson \
 	--named-layer=inrichtingselement_vlak1:/data_tiles/bgt/inrichtingselement_vlak1.geojson \
-	--named-layer=gebouw_vlak1:/data_tiles/bgt/gebouw_vlak1.geojson \
-	--named-layer=terreindeel_vlak2:/data_tiles/bgt/terreindeel_vlak2.geojson \
+	--named-layer=gebouwen1:/data_tiles/bgt/gebouw_vlak1.geojson \
+	--named-layer=terrein2:/data_tiles/bgt/terreindeel_vlak2.geojson \
 	--named-layer=wegdeel_vlak2:/data_tiles/bgt/wegdeel_vlak2.geojson \
 	--named-layer=inrichtingselement_vlak2:/data_tiles/bgt/inrichtingselement_vlak2.geojson \
-	--named-layer=gebouw_vlak2:/data_tiles/bgt/gebouw_vlak2.geojson \
-	--named-layer=terreindeel_vlak3:/data_tiles/bgt/terreindeel_vlak3.geojson \
+	--named-layer=gebouwen2:/data_tiles/bgt/gebouw_vlak2.geojson \
+	--named-layer=terrein3:/data_tiles/bgt/terreindeel_vlak3.geojson \
 	--named-layer=wegdeel_vlak3:/data_tiles/bgt/wegdeel_vlak3.geojson \
-	--named-layer=gebouw_vlak3:/data_tiles/bgt/gebouw_vlak3.geojson \
-	--named-layer=terreindeel_vlak4:/data_tiles/bgt/terreindeel_vlak4.geojson \
-	--named-layer=gebouw_vlak4:/data_tiles/bgt/gebouw_vlak4.geojson \
+	--named-layer=gebouwen3:/data_tiles/bgt/gebouw_vlak3.geojson \
+	--named-layer=terrein4:/data_tiles/bgt/terreindeel_vlak4.geojson \
+	--named-layer=gebouwen4:/data_tiles/bgt/gebouw_vlak4.geojson \
 	--named-layer=spoor_lijn_2:/data_tiles/bgt/spoor_lijn_2.geojson \
 	--named-layer=spoor_lijn_1:/data_tiles/bgt/spoor_lijn_1.geojson
 
+# generate tiles - kbk10
 dc run --rm tippecanoe \
     --force \
 	--no-tile-size-limit \
@@ -115,6 +116,7 @@ dc run --rm tippecanoe \
 	--named-layer=SBL_trein_nietoverdekt_nsp:/data_tiles/kbk10/SBL_trein_nietoverdekt_nsp.geojson \
 	--named-layer=weg_hartlijn:/data_tiles/kbk10/WGL_hartlijn.geojson
 
+# generate tiles - kbk50
 dc run --rm tippecanoe \
 	--force \
 	--no-tile-size-limit \

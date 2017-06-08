@@ -28,5 +28,4 @@ services:
     command: >
       python manage.py run_import
     volumes:
-      - "/mnt/vector_tiles:/app/vector_tiles"
       - "/tmp/geojson:/mnt/geojson"
