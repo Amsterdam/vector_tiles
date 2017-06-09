@@ -55,6 +55,7 @@ def ogr2ogr(schema, table):
 
 
 def run_import():
+    import_schema('bgt', tables_from_schema('bgt'))
     import_schema('bgt', materialized_views_from_schema('bgt'))
     import_schema('kbk10', tables_from_schema('kbk10'))
     import_schema('kbk50', tables_from_schema('kbk50'))
