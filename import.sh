@@ -16,9 +16,17 @@ dc up -d --build database
 sleep 10
 
 # create dirs
+sudo mkdir -p /mnt/geojson
+sudo chmod 755 /mnt/geojson
+sudo mkdir -p /mnt/tiles
+sudo chmod 755 /mnt/tiles
+
 mkdir -p /mnt/geojson/bgt
 mkdir -p /mnt/geojson/kbk10
 mkdir -p /mnt/geojson/kbk50
+sudo chmod 755 -R /mnt/geojson
+mkdir -p /mnt/tiles/vector_tiles
+sudo chmod 755 -R /mnt/tiles/vector_tiles
 
 # import basiskaart db
 dc exec database update-db.sh basiskaart
@@ -35,7 +43,7 @@ dc run --rm tippecanoe \
 	--no-polygon-splitting  \
 	--no-tiny-polygon-reduction \
 	--preserve-input-order \
-	--output-to-directory=/data_tiles/bgt_tiles_zip2 \
+	--output-to-directory=/vector_tiles \
 	-z21 -Z17 \
 	--named-layer=water:/data_tiles/bgt/waterdeel_vlak0.geojson \
 	--named-layer=terrein0:/data_tiles/bgt/terreindeel_vlak0.geojson \
@@ -70,7 +78,7 @@ dc run --rm tippecanoe \
 	--no-polygon-splitting  \
 	--no-tiny-polygon-reduction \
 	--preserve-input-order \
-	--output-to-directory=/data_tiles/kbk10_tiles_zip2 \
+	--output-to-directory=/vector_tiles \
 	-z16 -Z14 \
 	--named-layer=water:/data_tiles/kbk10/WDL_breed_water.geojson \
 	--named-layer=haven:/data_tiles/kbk10/WDL_haven.geojson \
@@ -125,7 +133,7 @@ dc run --rm tippecanoe \
 	--no-polygon-splitting  \
 	--no-tiny-polygon-reduction \
 	--preserve-input-order \
-	--output-to-directory=/data_tiles/kbk50_tiles_zip2 \
+	--output-to-directory=/vector_tiles \
 	-z13 -Z8 \
 	--named-layer=water:/data_tiles/kbk50/WDL_wateroppervlak.geojson \
 	--named-layer=terein_agrarisch:/data_tiles/kbk50/TRN_agrarisch.geojson \

@@ -19,6 +19,7 @@ services:
       BASISKAART_DB_PASSWORD: insecure
     volumes:
       - "/mnt/geojson:/data_tiles"
+      - "/mnt/tiles/vector_tiles:/vector_tiles"
 
   importer:
     build: .

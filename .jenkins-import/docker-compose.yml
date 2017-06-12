@@ -14,6 +14,7 @@ services:
       BASISKAART_DB_USER: postgres
       BASISKAART_DB_PASSWORD: insecure
     volumes:
+      - "/mnt/tiles/vector_tiles:/vector_tiles"
       - "/mnt/geojson:/data_tiles"
 
   importer:
