@@ -26,7 +26,6 @@ mkdir -p /mnt/geojson/kbk10
 mkdir -p /mnt/geojson/kbk50
 sudo chmod 755 -R /mnt/geojson
 mkdir -p /mnt/tiles/vector_tiles
-sudo chmod 755 -R /mnt/tiles/vector_tiles
 
 # import basiskaart db
 dc exec database update-db.sh basiskaart
