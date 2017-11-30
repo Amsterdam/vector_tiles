@@ -5,6 +5,8 @@ services:
     environment:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: basiskaart
+    extra_hosts:
+      admin.datapunt.amsterdam.nl: 10.99.157.24
 
   tippecanoe:
     image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe
