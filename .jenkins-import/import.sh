@@ -28,7 +28,7 @@ sudo chmod 755 -R /mnt/geojson
 mkdir -p /mnt/tiles/vector_tiles
 
 # import basiskaart db
-dc exec database update-db.sh basiskaart
+dc exec -T database update-db.sh basiskaart
 
 # generate geojson
 dc run --rm importer
