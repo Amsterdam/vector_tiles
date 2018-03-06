@@ -15,17 +15,21 @@ trap 'dc kill ; dc rm -f' EXIT
 dc up -d --build database
 sleep 10
 
+# Delete old tiles
+sudo rm -rf /mnt/geojson
+sudo rm -rf /mnt/vector_tiles
+
 # create dirs
 sudo mkdir -p /mnt/geojson
 sudo chmod 755 /mnt/geojson
-sudo mkdir -p /mnt/tiles
-sudo chmod 755 /mnt/tiles
 
 mkdir -p /mnt/geojson/bgt
 mkdir -p /mnt/geojson/kbk10
 mkdir -p /mnt/geojson/kbk50
 sudo chmod 755 -R /mnt/geojson
+
 mkdir -p /mnt/tiles/vector_tiles
+sudo chmod 755 -R /mnt/tiles/vector_tiles
 
 # import basiskaart db
 dc exec -T database update-db.sh basiskaart
