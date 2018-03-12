@@ -21,15 +21,15 @@ sudo rm -rf /mnt/vector_tiles
 
 # create dirs
 sudo mkdir -p /mnt/geojson
-sudo chmod 755 /mnt/geojson
+sudo chmod 777 /mnt/geojson
 
 mkdir -p /mnt/geojson/bgt
 mkdir -p /mnt/geojson/kbk10
 mkdir -p /mnt/geojson/kbk50
-sudo chmod 755 -R /mnt/geojson
+sudo chmod 777 -R /mnt/geojson
 
-mkdir -p /mnt/tiles/vector_tiles
-sudo chmod 755 -R /mnt/tiles/vector_tiles
+sudo chmod 777 /mnt/tiles
+sudo mkdir -p /mnt/tiles/vector_tiles
 
 # import basiskaart db
 dc exec -T database update-db.sh basiskaart
