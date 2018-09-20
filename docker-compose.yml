@@ -7,6 +7,8 @@ services:
     environment:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: basiskaart
+    volumes:
+      - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
   tippecanoe:
     build:
