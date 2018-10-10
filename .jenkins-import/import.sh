@@ -31,8 +31,6 @@ sudo chmod 777 -R /mnt/geojson
 sudo chmod 777 /mnt/tiles
 sudo mkdir -p /mnt/tiles/vector_tiles
 
-# create postgres superuser
-dc exec -T database createuser -U ${POSTGRES_USER} -s postgres
 # import basiskaart db
 dc exec -T database update-db.sh basiskaart
 
