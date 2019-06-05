@@ -43,7 +43,7 @@ node {
     stage("Build acceptance image importer") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "--build-arg http_proxy=${JENKINS_HTTP_PROXY_STRING} --build-arg https_proxy=${JENKINS_HTTP_PROXY_STRING}")
+                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "--build-arg http_proxy=${JENKINS_HTTP_PROXY_STRING} --build-arg https_proxy=${JENKINS_HTTP_PROXY_STRING} .")
                 image.push()
                 image.push("acceptance")
             }
