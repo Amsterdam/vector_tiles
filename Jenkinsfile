@@ -70,7 +70,7 @@ node {
     stage('Push production image importer') {
         tryStep "image tagging", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.image("build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer:${env.BUILD_NUMBER}")
+                def image = docker.image("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}")
                 image.pull()
                 image.push("production")
                 image.push("latest")
