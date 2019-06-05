@@ -1,7 +1,7 @@
 version: '3'
 services:
   database:
-    image: amsterdam/postgres
+    image: amsterdam/postgres11
     environment:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: basiskaart
@@ -9,7 +9,7 @@ services:
       admin.datapunt.amsterdam.nl: 10.99.157.24
 
   tippecanoe:
-    image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_tippecanoe
+    image: repo.data.amsterdam.nl/datapunt/vector_tiles_tippecanoe
     user: root
     environment:
       BASISKAART_DB_NAME: basiskaart
@@ -20,7 +20,7 @@ services:
       - "/mnt/geojson:/data_tiles"
 
   importer:
-    image: build.datapunt.amsterdam.nl:5000/datapunt/vector_tiles_importer
+    image: repo.data.amsterdam.nl/datapunt/vector_tiles_importer
     links:
       - tippecanoe
       - database
