@@ -33,7 +33,7 @@ node {
     stage("Build acceptance image tippecanoe") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.build("datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "containers/tippecanoe")
+                def image = docker.build("datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "-f containers/tippecanoe/Dockerfile .")
                 image.push()
                 image.push("acceptance")
             }
@@ -43,7 +43,7 @@ node {
     stage("Build acceptance image importer") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "containers/importer")
+                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "-f containers/importer/Dockerfile .")
                 image.push()
                 image.push("acceptance")
             }
