@@ -43,7 +43,7 @@ node {
     stage("Build acceptance image importer") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  ".")
+                def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "containers/importer")
                 image.push()
                 image.push("acceptance")
             }
