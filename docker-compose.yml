@@ -24,7 +24,9 @@ services:
       - "/mnt/tiles/vector_tiles:/vector_tiles"
 
   importer:
-    build: .
+    build:
+      context: .
+      dockerfile: ./containers/importer/Dockerfile
     links:
       - tippecanoe
       - database
