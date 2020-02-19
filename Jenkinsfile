@@ -32,7 +32,7 @@ node {
 
     stage("Build acceptance image tippecanoe") {
         tryStep "build", {
-            docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
+                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                 def image = docker.build("datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}", "-f containers/tippecanoe/Dockerfile .")
                 image.push()
                 image.push("acceptance")
@@ -42,7 +42,7 @@ node {
 
     stage("Build acceptance image importer") {
         tryStep "build", {
-            docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
+                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                 def image = docker.build("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}",  "-f containers/importer/Dockerfile .")
                 image.push()
                 image.push("acceptance")
@@ -59,7 +59,7 @@ stage('Waiting for approval') {
 node {
     stage('Push production image tippecanoe') {
         tryStep "image tagging", {
-            docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
+                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                 def image = docker.image("datapunt/vector_tiles_tippecanoe:${env.BUILD_NUMBER}")
                 image.pull()
                 image.push("production")
@@ -69,7 +69,7 @@ node {
     }
     stage('Push production image importer') {
         tryStep "image tagging", {
-            docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
+                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                 def image = docker.image("datapunt/vector_tiles_importer:${env.BUILD_NUMBER}")
                 image.pull()
                 image.push("production")
