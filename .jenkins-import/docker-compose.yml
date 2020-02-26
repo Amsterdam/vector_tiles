@@ -9,7 +9,7 @@ services:
       admin.datapunt.amsterdam.nl: 10.99.157.24
 
   tippecanoe:
-    image: repo.data.amsterdam.nl/datapunt/vector_tiles_tippecanoe
+    image: ${DOCKER_REGISTRY_HOST}datapunt/vector_tiles_tippecanoe
     user: root
     environment:
       BASISKAART_DB_NAME: basiskaart
@@ -20,7 +20,7 @@ services:
       - "/mnt/geojson:/data_tiles"
 
   importer:
-    image: repo.data.amsterdam.nl/datapunt/vector_tiles_importer
+    image: ${DOCKER_REGISTRY_HOST}/datapunt/vector_tiles_importer
     links:
       - tippecanoe
       - database
